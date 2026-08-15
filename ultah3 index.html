@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday My Love 💖</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:white;
+
+    background:
+        radial-gradient(circle at 20% 20%,#ff3d9140,transparent 25%),
+        radial-gradient(circle at 80% 30%,#8c3cff40,transparent 25%),
+        radial-gradient(circle at 50% 90%,#2f7cff35,transparent 30%),
+        linear-gradient(135deg,#05000e,#12001f,#020009);
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+#stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 8px white;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+        transform:scale(.6);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:20;
+}
+
+.heart{
+    position:absolute;
+    bottom:-60px;
+    animation:heartFloat linear forwards;
+}
+
+@keyframes heartFloat{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+        opacity:0;
+    }
+
+}
+
+
+/* =====================================================
+   PAGES
+===================================================== */
+
+.page{
+    display:none;
+    min-height:100vh;
+    padding:40px 20px;
+
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+.page.active{
+    display:flex;
+}
+
+.container{
+    width:min(1000px,100%);
+    text-align:center;
+}
+
+
+/* =====================================================
+   TITLES
+===================================================== */
+
+.title{
+
+    font-size:
+        clamp(40px,8vw,82px);
+
+    margin:20px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4fa3,
+            #ffffff,
+            #ff82c8,
+            #9d75ff
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+}
+
+.subtitle{
+
+    max-width:700px;
+    margin:auto;
+
+    color:#ddd;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn{
+
+    border:none;
+
+    padding:
+        15px 30px;
+
+    margin:
+        25px 7px 0;
+
+    border-radius:50px;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff298e,
+            #7d38ff
+        );
+
+    box-shadow:
+        0 0 30px #ff298e66;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 45px #ff298eaa;
+
+}
+
+
+/* =====================================================
+   GLASS CARD
+===================================================== */
+
+.card{
+
+    width:min(850px,100%);
+
+    margin:30px auto;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    background:#ffffff0b;
+
+    border:
+        1px solid #ffffff1d;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 20px 70px #0008;
+
+}
+
+
+/* =====================================================
+   OPENING
+===================================================== */
+
+.big-heart{
+
+    font-size:95px;
+
+    animation:
+        heartbeat 1.5s infinite;
+
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+}
+
+
+/* =====================================================
+   PIN
+===================================================== */
+
+.pin-input{
+
+    width:min(350px,100%);
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border:
+        1px solid #ffffff25;
+
+    outline:none;
+
+    background:#ffffff0c;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:25px;
+
+    letter-spacing:12px;
+
+}
+
+.error{
+
+    display:none;
+
+    margin-top:15px;
+
+    color:#ff76aa;
+
+}
+
+
+/* =====================================================
+   MAIN PHOTO
+===================================================== */
+
+.main-photo{
+
+    width:min(350px,90%);
+
+    aspect-ratio:1;
+
+    margin:35px auto;
+
+    padding:6px;
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #783cff,
+            #3cbcff
+        );
+
+    box-shadow:
+        0 0 60px #ff4fa366;
+
+    animation:
+        floatingPhoto 4s ease-in-out infinite;
+
+}
+
+@keyframes floatingPhoto{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    50%{
+        transform:
+            translateY(-12px)
+            rotate(1deg);
+    }
+
+}
+
+.main-photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:29px;
+
+}
+
+
+/* =====================================================
+   COUNTER
+===================================================== */
+
+.counter{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+    max-width:700px;
+
+    margin:35px auto;
+
+}
+
+.time-box{
+
+    padding:20px 10px;
+
+    border-radius:20px;
+
+    background:#ffffff0c;
+
+    border:
+        1px solid #ffffff1b;
+
+}
+
+.time-box strong{
+
+    display:block;
+
+    font-size:32px;
+
+    color:#ff82c8;
+
+}
+
+.time-box span{
+
+    color:#aaa;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+.gallery-item{
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    aspect-ratio:1;
+
+    border:
+        1px solid #ffffff22;
+
+}
+
+.gallery-item img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.gallery-item:hover img{
+
+    transform:
+        scale(1.1)
+        rotate(2deg);
+
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter{
+
+    text-align:left;
+
+    font-size:17px;
+
+    line-height:2;
+
+    color:#eee;
+
+    min-height:300px;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+
+    max-width:750px;
+
+    margin:35px auto;
+
+    text-align:left;
+
+}
+
+.timeline-item{
+
+    position:relative;
+
+    padding:
+        20px
+        20px
+        20px
+        50px;
+
+    margin:20px 0;
+
+    border-left:
+        3px solid #ff4fa3;
+
+    background:#ffffff08;
+
+    border-radius:0 20px 20px 0;
+
+}
+
+.timeline-item::before{
+
+    content:"💖";
+
+    position:absolute;
+
+    left:-20px;
+
+    top:15px;
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#130020;
+
+    border-radius:50%;
+
+}
+
+.timeline-item h3{
+
+    color:#ff86c8;
+
+    margin-bottom:8px;
+
+}
+
+.timeline-item p{
+
+    color:#ccc;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   GALAXY
+===================================================== */
+
+.galaxy{
+
+    position:relative;
+
+    width:360px;
+
+    height:360px;
+
+    margin:50px auto;
+
+    border-radius:50%;
+
+    border:
+        1px solid #ffffff22;
+
+    box-shadow:
+        0 0 70px #7f3cff33;
+
+    animation:
+        galaxyRotate 25s linear infinite;
+
+}
+
+@keyframes galaxyRotate{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.galaxy::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:35px;
+
+    border-radius:50%;
+
+    border:
+        1px dashed #ffffff22;
+
+}
+
+.galaxy-photo{
+
+    position:absolute;
+
+    width:85px;
+    height:85px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+        4px solid white;
+
+    box-shadow:
+        0 0 25px #ff4fa3;
+
+}
+
+.g1{
+
+    top:-40px;
+    left:135px;
+
+}
+
+.g2{
+
+    right:-40px;
+    top:135px;
+
+}
+
+.g3{
+
+    bottom:-40px;
+    left:135px;
+
+}
+
+.g4{
+
+    left:-40px;
+    top:135px;
+
+}
+
+.galaxy-center{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:75px;
+
+}
+
+
+/* =====================================================
+   CAKE
+===================================================== */
+
+.cake{
+
+    position:relative;
+
+    width:230px;
+
+    height:190px;
+
+    margin:45px auto;
+
+}
+
+.cake-body{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:230px;
+
+    height:110px;
+
+    border-radius:
+        20px
+        20px
+        25px
+        25px;
+
+    background:
+        linear-gradient(
+            #ff70b9,
+            #c62a73
+        );
+
+}
+
+.cake-top{
+
+    position:absolute;
+
+    top:35px;
+
+    width:230px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    background:#ff9fd1;
+
+}
+
+.candle{
+
+    position:absolute;
+
+    top:-20px;
+
+    left:107px;
+
+    width:16px;
+
+    height:60px;
+
+    background:white;
+
+    border-radius:5px;
+
+}
+
+.flame{
+
+    position:absolute;
+
+    width:24px;
+
+    height:32px;
+
+    left:-4px;
+
+    top:-30px;
+
+    border-radius:
+        50%
+        50%
+        50%
+        0;
+
+    background:#ffd84d;
+
+    transform:rotate(-45deg);
+
+    box-shadow:
+        0 0 30px #ffd000;
+
+    animation:
+        flameMove .6s infinite alternate;
+
+}
+
+@keyframes flameMove{
+
+    from{
+        transform:
+            rotate(-45deg)
+            scale(.9);
+    }
+
+    to{
+        transform:
+            rotate(-40deg)
+            scale(1.1);
+    }
+
+}
+
+
+/* =====================================================
+   WISH
+===================================================== */
+
+.wish{
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    color:#ffabd7;
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+.gift{
+
+    position:relative;
+
+    width:190px;
+
+    height:180px;
+
+    margin:45px auto;
+
+    cursor:pointer;
+
+}
+
+.gift-box{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:190px;
+
+    height:125px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff318f,
+            #c11b67
+        );
+
+}
+
+.gift-lid{
+
+    position:absolute;
+
+    top:20px;
+
+    left:-10px;
+
+    width:210px;
+
+    height:50px;
+
+    border-radius:10px;
+
+    background:#ff75b8;
+
+    transition:.7s;
+
+}
+
+.gift-ribbon{
+
+    position:absolute;
+
+    left:82px;
+
+    bottom:0;
+
+    width:26px;
+
+    height:160px;
+
+    background:#ffe8f5;
+
+}
+
+.gift.open .gift-lid{
+
+    transform:
+        translateY(-90px)
+        rotate(-10deg);
+
+}
+
+.final-message{
+
+    display:none;
+
+    animation:
+        finalAppear 1.5s forwards;
+
+}
+
+@keyframes finalAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+.confetti{
+
+    position:fixed;
+
+    top:-30px;
+
+    z-index:999;
+
+    animation:
+        confettiFall 4s linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+    to{
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music-btn{
+
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:58px;
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff3d92;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:100;
+
+    box-shadow:
+        0 0 30px #ff3d92aa;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    .gallery{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .counter{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .card{
+
+        padding:23px;
+
+    }
+
+    .galaxy{
+
+        width:280px;
+        height:280px;
+
+    }
+
+    .g1,
+    .g3{
+
+        left:98px;
+
+    }
+
+    .g2{
+
+        right:-35px;
+        top:98px;
+
+    }
+
+    .g4{
+
+        left:-35px;
+        top:98px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div id="stars"></div>
+
+<div id="hearts"></div>
+
+
+<!-- =====================================================
+     PAGE 1
+===================================================== -->
+
+<section
+    class="page active"
+    id="page1"
+>
+
+<div class="container">
+
+    <div class="big-heart">
+        💖
+    </div>
+
+    <h1 class="title">
+        Hey, My Love...
+    </h1>
+
+    <p class="subtitle">
+
+        Ada sesuatu yang sudah aku
+        siapkan khusus untukmu.
+
+        <br><br>
+
+        Hari ini bukan hari biasa.
+
+        <br>
+
+        Jadi...
+
+        <br><br>
+
+        Siap siap untuk melihat kejutanmu? ✨
+
+    </p>
+
+    <button
+        class="btn"
+        onclick="goTo(2)"
+    >
+        💌 Buka Kejutan
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 2
+===================================================== -->
+
+<section
+    class="page"
+    id="page2"
+>
+
+<div class="container">
+
+<div class="card">
+
+    <div style="font-size:70px">
+        🔐
+    </div>
+
+    <h1 class="title">
+        Secret Gate
+    </h1>
+
+    <p class="subtitle">
+
+        Masukkan PIN rahasia
+        untuk membuka perjalanan kecil ini.
+
+    </p>
+
+    <br>
+
+    <input
+        class="pin-input"
+        id="pin"
+        maxlength="4"
+        type="password"
+        placeholder="••••"
+    >
+
+    <br>
+
+    <button
+        class="btn"
+        onclick="checkPin()"
+    >
+        🔓 Unlock
+    </button>
+
+    <p
+        class="error"
+        id="error"
+    >
+        PIN salah 😝 Coba lagi.
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 3
+===================================================== -->
+
+<section
+    class="page"
+    id="page3"
+>
+
+<div class="container">
+
+    <span>
+        ✨ TODAY IS YOUR DAY ✨
+    </span>
+
+    <h1 class="title">
+        Happy Birthday! 🎂
+    </h1>
+
+    <p class="subtitle">
+
+        Hari ini dunia menjadi
+        sedikit lebih indah...
+
+        <br>
+
+        karena seseorang yang sangat
+        spesial pernah lahir.
+
+    </p>
+
+
+    <div class="main-photo">
+
+        <img
+            src="adeek.jpg"
+            width= "250px" height= "170px"
+        >
+
+    </div>
+
+
+    <div class="card">
+
+        <h2 style="color:#ff82c8">
+            🎉 Hari Spesialmu
+        </h2>
+
+        <p class="subtitle">
+
+            Semoga hari ini dipenuhi
+            tawa, kebahagiaan,
+            kejutan dan banyak hal baik.
+
+        </p>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="goTo(4)"
+    >
+        ⏳ Lihat Waktu Bersama
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 4
+===================================================== -->
+
+<section
+    class="page"
+    id="page4"
+>
+
+<div class="container">
+
+    <h1 class="title">
+        A Little Countdown ⏳
+    </h1>
+
+    <p class="subtitle">
+
+        Setiap detik yang berlalu
+        adalah bagian dari cerita.
+
+    </p>
+
+
+    <div class="counter">
+
+        <div class="time-box">
+
+            <strong id="days">
+                00
+            </strong>
+
+            <span>
+                Hari
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <strong id="hours">
+                00
+            </strong>
+
+            <span>
+                Jam
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <strong id="minutes">
+                00
+            </strong>
+
+            <span>
+                Menit
+            </span>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <strong id="seconds">
+                00
+            </strong>
+
+            <span>
+                Detik
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2 style="color:#ff83c9">
+            💕 Time keeps moving...
+        </h2>
+
+        <p class="subtitle">
+
+            Tapi ada beberapa momen
+            yang selalu ingin kita simpan.
+
+        </p>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="goTo(5)"
+    >
+        📸 Lihat Kenangan
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 5
+===================================================== -->
+
+<section
+    class="page"
+    id="page5"
+>
+
+<div class="container">
+
+    <h1 class="title">
+        Our Memories 📸
+    </h1>
+
+    <p class="subtitle">
+
+        Foto mungkin hanya sebuah gambar.
+
+        <br>
+
+        Tapi cerita di baliknya
+        tidak pernah sederhana.
+
+    </p>
+
+
+    <div class="gallery">
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto pertama">
+        </div>
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto vaforit">
+        </div>
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto tercantik">
+        </div>
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto terlucu">
+        </div>
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto terimut">
+        </div>
+
+        <div class="gallery-item">
+            <img src="adeek.jpg" alt="foto bersama">
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="goTo(6)"
+    >
+        💌 Ada Surat Untukmu
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 6
+===================================================== -->
+
+<section
+    class="page"
+    id="page6"
+>
+
+<div class="container">
+
+<div class="card">
+
+    <h1 class="title">
+        A Letter For You 💌
+    </h1>
+
+    <div
+        class="letter"
+        id="letter"
+    ></div>
+
+</div>
+
+
+<button
+    class="btn"
+    onclick="goTo(7)"
+>
+    🌸 Lihat Cerita Kita
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 7 TIMELINE
+===================================================== -->
+
+<section
+    class="page"
+    id="page7"
+>
+
+<div class="container">
+
+    <h1 class="title">
+        Our Little Story 💕
+    </h1>
+
+    <p class="subtitle">
+
+        Beberapa momen kecil
+        yang membuat perjalanan
+        terasa lebih berarti.
+
+    </p>
+
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+
+            <h3>
+                🌸 First Moment
+            </h3>
+
+            <p>
+                Mungkin saat itu terasa biasa,
+                tapi ternyata menjadi awal
+                dari sebuah cerita yang indah.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>
+                ✨ First Memory
+            </h3>
+
+            <p>
+                Ada begitu banyak momen kecil
+                yang akhirnya menjadi kenangan
+                besar.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>
+                😂 The Funny Moments
+            </h3>
+
+            <p>
+                Tawa, candaan dan hal-hal
+                sederhana yang sampai sekarang
+                masih membuat tersenyum.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <h3>
+                💖 TODAY
+            </h3>
+
+            <p>
+                Hari ini adalah hari untuk
+                merayakan seseorang yang
+                sangat spesial.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="goTo(8)"
+    >
+        🌌 Enter Love Galaxy
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 8 GALAXY
+===================================================== -->
+
+<section
+    class="page"
+    id="page8"
+>
+
+<div class="container">
+
+    <h1 class="title">
+        Our Love Galaxy 🌌
+    </h1>
+
+    <p class="subtitle">
+
+        Di antara begitu banyak
+        bintang di alam semesta...
+
+        <br>
+
+        ada satu yang selalu terasa
+        paling istimewa. 💖
+
+    </p>
+
+
+    <div class="galaxy">
+
+        <img
+            src="adeek.jpg"
+            class="galaxy-photo g1"
+        >
+
+        <img
+            src="adeek.jpg"
+            class="galaxy-photo g2"
+        >
+
+        <img
+            src="adeek.jpg"
+            class="galaxy-photo g3"
+        >
+
+        <img
+            src="adeek.jpg"
+            class="galaxy-photo g4"
+        >
+
+        <div class="galaxy-center">
+            💖
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="goTo(9)"
+    >
+        🎂 Make A Wish
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 9 CAKE
+===================================================== -->
+
+<section
+    class="page"
+    id="page9"
+>
+
+<div class="container">
+
+<div class="card">
+
+    <h1 class="title">
+        Make A Wish 🎂
+    </h1>
+
+    <p class="subtitle">
+
+        Pejamkan mata sebentar.
+
+        <br>
+
+        Buat satu harapan
+        paling indah dalam hati.
+
+    </p>
+
+
+    <div class="cake">
+
+        <div class="cake-body"></div>
+
+        <div class="cake-top"></div>
+
+        <div class="candle">
+
+            <div
+                class="flame"
+                id="flame"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="blowCandle()"
+    >
+        🕯️ Tiup Lilin
+    </button>
+
+
+    <p
+        id="wish"
+        class="wish"
+    ></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 10 GIFT
+===================================================== -->
+
+<section
+    class="page"
+    id="page10"
+>
+
+<div class="container">
+
+<div class="card">
+
+    <h1 class="title">
+        One Last Gift 🎁
+    </h1>
+
+    <p class="subtitle">
+
+        Kamu sudah sampai
+        di bagian terakhir.
+
+        <br><br>
+
+        Tapi masih ada satu
+        kejutan kecil.
+
+    </p>
+
+
+    <div
+        class="gift"
+        id="gift"
+        onclick="openGift()"
+    >
+
+        <div class="gift-box"></div>
+
+        <div class="gift-ribbon"></div>
+
+        <div class="gift-lid"></div>
+
+    </div>
+
+
+    <div
+        class="final-message"
+        id="finalMessage"
+    >
+
+        <h2
+            style="
+            font-size:42px;
+            color:#ff82c8;
+            "
+        >
+            💖 Happy Birthday 💖
+        </h2>
+
+        <br>
+
+
+        <p class="wish">
+
+            Selamat ulang tahun
+            untuk seseorang yang
+            sangat spesial.
+
+            <br><br>
+
+            Semoga usia barumu
+            membawa lebih banyak
+            kebahagiaan.
+
+            <br><br>
+
+            Semoga impianmu
+            satu per satu menjadi
+            kenyataan.
+
+            <br><br>
+
+            Semoga kamu selalu
+            dikelilingi orang-orang
+            yang menyayangimu.
+
+            <br><br>
+
+            Dan yang paling penting...
+
+            <br><br>
+
+            Jangan pernah lupa
+            bahwa kamu adalah
+            seseorang yang berharga.
+
+            <br><br>
+
+            🎂✨💖
+
+        </p>
+
+
+        <button
+            class="btn"
+            onclick="celebrate()"
+        >
+            🎉 Rayakan Lagi
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<button
+    class="music-btn"
+    id="musicBtn"
+    onclick="toggleMusic()"
+>
+    🎵
+</button>
+
+
+<audio
+    id="music"
+    loop
+>
+
+    <source
+        src="lagu romantis.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<script>
+
+/* =====================================================
+   STARS
+===================================================== */
+
+const stars=
+document.getElementById("stars");
+
+for(let i=0;i<160;i++){
+
+    const star=
+    document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=
+        Math.random()*100+"%";
+
+    star.style.top=
+        Math.random()*100+"%";
+
+    const size=
+        Math.random()*3+1;
+
+    star.style.width=
+        size+"px";
+
+    star.style.height=
+        size+"px";
+
+    star.style.animationDelay=
+        Math.random()*3+"s";
+
+    stars.appendChild(star);
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHeart(){
+
+    const heart=
+    document.createElement("div");
+
+    heart.className="heart";
+
+    const symbols=[
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💞",
+        "💘",
+        "✨"
+    ];
+
+    heart.innerHTML=
+        symbols[
+            Math.floor(
+                Math.random()*
+                symbols.length
+            )
+        ];
+
+    heart.style.left=
+        Math.random()*100+"%";
+
+    heart.style.fontSize=
+        Math.random()*20+15+"px";
+
+    heart.style.animationDuration=
+        Math.random()*5+5+"s";
+
+    document
+        .getElementById("hearts")
+        .appendChild(heart);
+
+    setTimeout(
+        ()=>{
+            heart.remove();
+        },
+        10000
+    );
+
+}
+
+setInterval(
+    createHeart,
+    650
+);
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function goTo(number){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            page=>{
+                page.classList.remove("active");
+            }
+        );
+
+    document
+        .getElementById("page"+number)
+        .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    if(number===6){
+        startLetter();
+    }
+
+}
+
+
+/* =====================================================
+   PIN
+===================================================== */
+
+function checkPin(){
+
+    const pin=
+        document
+        .getElementById("pin")
+        .value;
+
+    if(pin==="1111"){
+
+        document
+        .getElementById("error")
+        .style.display="none";
+
+        goTo(3);
+
+    }else{
+
+        document
+        .getElementById("error")
+        .style.display="block";
+
+    }
+
+}
+
+
+/* =====================================================
+   LETTER TYPING
+===================================================== */
+
+const letterText=`
+
+Untuk kamu yang hari ini sedang bertambah usia... 💖
+
+Selamat ulang tahun.
+
+Hari ini adalah hari yang spesial,
+karena seseorang yang sangat berarti
+sedang merayakan hari kelahirannya.
+
+Aku berharap di usia barumu,
+kamu selalu menemukan banyak alasan
+untuk tersenyum.
+
+Semoga semua impian yang kamu miliki
+perlahan menjadi kenyataan.
+
+Semoga langkahmu selalu dimudahkan.
+
+Semoga ketika hari terasa berat,
+kamu selalu menemukan kekuatan
+untuk melewatinya.
+
+Terima kasih untuk semua cerita,
+tawa, momen sederhana,
+dan kenangan yang membuat hari-hari
+menjadi lebih berwarna.
+
+Nikmati hari spesialmu.
+
+Hari ini adalah tentang kamu. 🎂
+
+Happy Birthday, My Special Person. 💕
+`;
+
+let letterStarted=false;
+
+function startLetter(){
+  
+  if(letterStarted)return;
+
+    letterStarted=true;
+
+    const target=
+        document.getElementById("letter");
+
+    let i=0;
+
+    function type(){
+
+        if(i<letterText.length){
+
+            target.innerHTML=
+                letterText
+                .substring(0,i+1)
+                .replace(/\n/g,"<br>");
+
+            i++;
+
+            setTimeout(
+                type,
+                25
+            );
+
+        }
+
+    }
+
+    type();
+
+}
+
+
+/* =====================================================
+   BLOW CANDLE
+===================================================== */
+
+function blowCandle(){
+
+    document
+        .getElementById("flame")
+        .style.display="none";
+
+    document
+        .getElementById("wish")
+        .innerHTML=
+        "✨ Semoga semua harapan baikmu menjadi kenyataan. ✨";
+
+    celebrate();
+
+    setTimeout(
+        ()=>{
+            goTo(10);
+        },
+        2500
+    );
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+function openGift(){
+
+    const gift=
+        document.getElementById("gift");
+
+    gift.classList.add("open");
+
+    setTimeout(
+        ()=>{
+
+            document
+                .getElementById("finalMessage")
+                .style.display="block";
+
+            celebrate();
+
+        },
+        700
+    );
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function celebrate(){
+
+    const symbols=[
+        "💖",
+        "💕",
+        "💗",
+        "✨",
+        "🎉",
+        "🎊",
+        "🌸"
+    ];
+
+    for(let i=0;i<100;i++){
+
+        const c=
+            document.createElement("div");
+
+        c.className="confetti";
+
+        c.innerHTML=
+            symbols[
+                Math.floor(
+                    Math.random()*
+                    symbols.length
+                )
+            ];
+
+        c.style.left=
+            Math.random()*100+"%";
+
+        c.style.fontSize=
+            Math.random()*20+10+"px";
+
+        c.style.animationDuration=
+            Math.random()*3+2+"s";
+
+        c.style.animationDelay=
+            Math.random()*1.5+"s";
+
+        document.body.appendChild(c);
+
+        setTimeout(
+            ()=>{
+                c.remove();
+            },
+            6500
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+let musicPlaying=false;
+
+function toggleMusic(){
+
+    const music=
+        document.getElementById("music");
+
+    const button=
+        document.getElementById("musicBtn");
+
+    if(!musicPlaying){
+
+        music.play()
+        .then(
+            ()=>{
+
+                musicPlaying=true;
+
+                button.innerHTML="🔊";
+
+            }
+        )
+        .catch(
+            ()=>{
+
+                alert(
+               "Masukkan file lagu.mp3 ke folder website terlebih dahulu."
+                );
+
+            }
+        );
+
+    }else{
+
+        music.pause();
+
+        musicPlaying=false;
+
+        button.innerHTML="🎵";
+
+    }
+
+}
+
+
+/* =====================================================
+   SIMPLE TIMER
+===================================================== */
+
+/*
+   Ganti tanggal di bawah dengan
+   tanggal yang kamu inginkan.
+*/
+
+const targetDate=
+    new Date(
+        "2026-08-01T00:00:00"
+    ).getTime();
+
+function updateTimer(){
+
+    const now=
+        new Date().getTime();
+
+    let distance=
+        targetDate-now;
+
+    if(distance<0){
+
+        distance=
+            Math.abs(distance);
+
+    }
+
+    const days=
+        Math.floor(
+            distance/
+            (1000*60*60*24)
+        );
+
+    const hours=
+        Math.floor(
+            (distance/
+            (1000*60*60))%24
+        );
+
+    const minutes=
+        Math.floor(
+            (distance/
+            (1000*60))%60
+        );
+
+    const seconds=
+        Math.floor(
+            (distance/1000)%60
+        );
+
+    document
+        .getElementById("days")
+        .innerText=
+        String(days)
+        .padStart(2,"0");
+
+    document
+        .getElementById("hours")
+        .innerText=
+        String(hours)
+        .padStart(2,"0");
+
+    document
+        .getElementById("minutes")
+        .innerText=
+        String(minutes)
+        .padStart(2,"0");
+
+    document
+        .getElementById("seconds")
+        .innerText=
+        String(seconds)
+        .padStart(2,"0");
+
+}
+
+setInterval(
+    updateTimer,
+    1000
+);
+
+updateTimer();
+
+
+/* =====================================================
+   INITIAL HEARTS
+===================================================== */
+
+for(let i=0;i<20;i++){
+
+    setTimeout(
+        createHeart,
+        i*250
+    );
+
+}
+
+</script>
+
+</body>
+</html>
